@@ -1,0 +1,6 @@
+{"type":"custom-title","customTitle":"Cascade merge investigation","sessionId":"abc"}
+{"type":"user","isMeta":false,"isSidechain":false,"userType":"external","cwd":"/Users/alice/Documents/example-project","gitBranch":"main","message":{"role":"user","content":"<command-name>/effort</command-name>"},"timestamp":"2026-05-15T14:20:00.000Z"}
+{"type":"user","isMeta":false,"isSidechain":false,"userType":"external","cwd":"/Users/alice/Documents/example-project","gitBranch":"main","message":{"role":"user","content":"<local-command-stdout>Set effort level to max</local-command-stdout>"},"timestamp":"2026-05-15T14:20:01.000Z"}
+{"type":"user","isMeta":false,"isSidechain":false,"userType":"external","cwd":"/Users/alice/Documents/example-project","gitBranch":"main","message":{"role":"user","content":"How does cascade merge work in GitLab?"},"timestamp":"2026-05-15T14:23:00.000Z"}
+{"type":"assistant","message":{"role":"assistant","content":"Cascade merge is..."},"timestamp":"2026-05-15T14:23:45.000Z"}
+{"type":"user","isMeta":false,"isSidechain":false,"userType":"external","message":{"role":"user","content":"Got it, thanks"},"timestamp":"2026-05-15T14:25:00.000Z"}

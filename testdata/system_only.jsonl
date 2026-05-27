@@ -1,0 +1,4 @@
+{"type":"custom-title","customTitle":"wrappers-only"}
+{"type":"user","isMeta":false,"userType":"external","message":{"role":"user","content":"<command-name>/clear</command-name>"},"timestamp":"2026-05-01T10:00:00.000Z"}
+{"type":"user","isMeta":true,"userType":"external","message":{"role":"user","content":"this is meta, should skip"},"timestamp":"2026-05-01T10:00:01.000Z"}
+{"type":"user","isMeta":false,"isSidechain":true,"userType":"external","message":{"role":"user","content":"sidechain, skip"},"timestamp":"2026-05-01T10:00:02.000Z"}
