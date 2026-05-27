@@ -46,6 +46,21 @@ func TestLoadLegacyPermissionMode(t *testing.T) {
 	}
 }
 
+func TestLoadMalformedConfig_warnsAndUsesDefaults(t *testing.T) {
+	dir := t.TempDir()
+	path := filepath.Join(dir, "config.toml")
+	if err := os.WriteFile(path, []byte("this is not toml = = ="), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	c, err := Load(path)
+	if err != nil {
+		t.Fatalf("malformed config should not return error (defaults used), got %v", err)
+	}
+	if len(c.DefaultArgs) == 0 {
+		t.Errorf("expected default DefaultArgs on malformed load, got %v", c.DefaultArgs)
+	}
+}
+
 func TestLoadDefaultArgs(t *testing.T) {
 	dir := t.TempDir()
 	path := filepath.Join(dir, "config.toml")

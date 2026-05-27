@@ -23,6 +23,7 @@ import (
 type ResumeMsg struct {
 	Cwd         string
 	UUID        string
+	FilePath    string
 	DefaultArgs []string
 	ForkSession bool
 }
@@ -271,13 +272,13 @@ func (m Model) handleKey(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 		}
 	case key.Matches(msg, m.keys.Enter):
 		if s, ok := m.current(); ok && !s.Missing {
-			rm := ResumeMsg{Cwd: s.Cwd, UUID: s.UUID, DefaultArgs: m.cfg.DefaultArgs}
+			rm := ResumeMsg{Cwd: s.Cwd, UUID: s.UUID, FilePath: s.FilePath, DefaultArgs: m.cfg.DefaultArgs}
 			m.pendingResume = &rm
 			return m, tea.Quit
 		}
 	case key.Matches(msg, m.keys.Fork):
 		if s, ok := m.current(); ok && !s.Missing {
-			rm := ResumeMsg{Cwd: s.Cwd, UUID: s.UUID, DefaultArgs: m.cfg.DefaultArgs, ForkSession: true}
+			rm := ResumeMsg{Cwd: s.Cwd, UUID: s.UUID, FilePath: s.FilePath, DefaultArgs: m.cfg.DefaultArgs, ForkSession: true}
 			m.pendingResume = &rm
 			return m, tea.Quit
 		}

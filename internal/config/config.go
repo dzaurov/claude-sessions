@@ -4,6 +4,7 @@ package config
 
 import (
 	"errors"
+	"fmt"
 	"io/fs"
 	"os"
 	"path/filepath"
@@ -123,6 +124,9 @@ func permissionModeToArgs(mode string) []string {
 	return nil
 }
 
+// Load reads config.toml. Missing file → write defaults and return them.
+// Malformed file → log a warning to stderr and return defaults (do NOT
+// overwrite the user's broken file, they may want to fix it themselves).
 func Load(path string) (Config, error) {
 	c := Default()
 	data, err := os.ReadFile(path)
@@ -133,8 +137,9 @@ func Load(path string) (Config, error) {
 		return c, err
 	}
 	var parsed Config
-	if _, err := toml.Decode(string(data), &parsed); err != nil {
-		return c, err
+	if _, derr := toml.Decode(string(data), &parsed); derr != nil {
+		fmt.Fprintf(os.Stderr, "ccs: warning: %s is malformed (%v); using defaults\n", path, derr)
+		return c, nil
 	}
 
 	// Backwards compat: if user has legacy permission_mode and no
